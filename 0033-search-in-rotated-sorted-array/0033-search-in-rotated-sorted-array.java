@@ -69,7 +69,7 @@ class Solution {
             else if(nums[mid] <= nums[j]){
                 j = mid - 1;
             }
-            else if(nums[mid] >= nums[i]){
+            else {
                 i= mid + 1;
             }
             
