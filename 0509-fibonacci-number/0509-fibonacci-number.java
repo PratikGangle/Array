@@ -4,8 +4,15 @@ class Solution {
         if(n==0 || n==1){
             return n;
         }
+        int first=0;
+        int second =1;
         
-        return fib(n-2) + fib(n-1);
-        
+        int ans=0;
+        for(int i=2; i<=n; i++){            
+            ans = first + second;
+            first = second;
+            second = ans;
+        }
+        return ans;       
     }
 }
