@@ -1,32 +1,22 @@
 class Solution {
-    
-     List<List<Integer>> list = new ArrayList<>();
-    
     public List<List<Integer>> subsets(int[] nums) {
-             
-        //using a helper function
-        helper(nums, new ArrayList<Integer>(),0);
+                
+         List<List<Integer>> outer = new ArrayList<>();
         
-        return list;
-    }
-    
-    
-    public void helper(int[] nums, ArrayList<Integer> output , int index){
-        
-        if(index == nums.length){
-            list.add(output);
-            return;
+        outer.add(new ArrayList<>());
+                
+        for(int num : nums){
+            int n = outer.size();
+            
+            for (int i =0; i<n ; i++){
+                List<Integer> internal = new ArrayList<>(outer.get(i));
+                internal.add(num);
+                outer.add(internal);                
+            }
         }
         
-        // not include
-        
-        helper(nums , new ArrayList<>(output) ,index+1);
-        //include
-        
-        output.add(nums[index]);
-        helper(nums , new ArrayList<>(output) ,index+1);
-                      
+        return outer;
     }
     
-    
+   
 }
