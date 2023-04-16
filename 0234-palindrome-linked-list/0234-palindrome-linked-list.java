@@ -11,45 +11,23 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
         
-        ListNode slow = head;
-        ListNode fast = head;
+        ArrayList<Integer> list = new ArrayList<>();
         
-        // find the middle of the linkedlist 
-        while(fast.next != null && fast.next.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
+        ListNode temp = head;
+        
+        while(temp != null){
+            list.add(temp.val);
+            temp = temp.next;
         }
         
-        //reverse the half side of the linkedlist
+        int i =0;
+        int j = list.size() -1;
         
-        slow.next = reverseList(slow.next);
-        
-        //move slow two right half
-        slow = slow.next;
-        
-        //check the left half and right half is equal or not
-        while(slow !=null){
-            if(head.val != slow.val){
+        while (i<j){
+            if(list.get(i++) != list.get(j--)){
                 return false;
             }
-            head=head.next;
-            slow= slow.next;
         }
-        
         return true;
-    }
-    
-    
-    public ListNode reverseList(ListNode head){
-        ListNode pre =null;
-        ListNode next =null;
-        
-        while(head!=null){
-            next = head.next;
-            head.next =pre;
-            pre = head;
-            head = next;
-        }
-        return pre;
     }
 }
