@@ -11,44 +11,33 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         
-        // if List size is one
-        if(head.next == null){
-            if(n==1){
-                ListNode ans = null;
-                return ans;
-            }
-            else{
-                return head;
-            }
-        }
-        
-        
-        // create a arrayList
-        ArrayList<Integer> list = new ArrayList<>();
-        
         ListNode temp = head;
-        // add element in arrayList
+        
+        int size =0;
+        
         while(temp != null){
-            list.add(temp.val);
             temp = temp.next;
-        }
-        int size = list.size();
-        
-        // remove i th last node in the arrayList
-        list.remove(size-n);
-        
-         
-         ListNode ans = new ListNode(list.get(0));
-        ListNode a = ans;
-        
-        // add element arrayList to LinkedList
-        for(int i=1; i<size-1; i++){
-            ListNode t = new ListNode(list.get(i));  
-            a.next = t;
-            a = a.next;                        
+            size++;
         }
         
-        // return the ListNode head Node        
-        return ans;
+        if(size == 1 && n==1){
+            return head=null;
+        }
+        
+        size = size -n;
+        if(size == 0){
+            return head.next;
+        }
+        temp = head;
+        int i =1;
+        while (i< size){
+            temp = temp.next;
+            i++;
+        }
+        System.out.print(temp.val);
+        
+        temp.next = temp.next.next;
+        
+        return head;
     }
 }
