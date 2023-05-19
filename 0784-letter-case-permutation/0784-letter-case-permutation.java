@@ -2,30 +2,30 @@ class Solution {
     public List<String> letterCasePermutation(String s) {
         
         List<String> res = new ArrayList<>();
-        solve("", s , res);
+        solve("", s , 0 , res);
         
         return res;
     }
     
     
-    void solve(String op, String in , List<String> res){
+    void solve(String op, String in ,int n , List<String> res){
         
-        if( in.length() == 0){
+        if( in.length() == n){
             res.add(op);
             return;
         }
         
-        String ch = "" + in.charAt(0);
-        if(isAlphabet(in.charAt(0))){
+        String ch = "" + in.charAt(n);
+        if(isAlphabet(in.charAt(n))){
             String op1 = op + ch.toLowerCase();
-            solve(op1,in.substring(1),res);
+            solve(op1, in ,n+1 ,res);
             
             String op2 = op + ch.toUpperCase();
-            solve(op2,in.substring(1),res);
+            solve(op2, in  , n+1 , res);
             
         }
         else{
-            solve(op + in.charAt(0),in.substring(1),res);            
+            solve(op + in.charAt(n), in, n+1 ,res);            
         }
     }
      
