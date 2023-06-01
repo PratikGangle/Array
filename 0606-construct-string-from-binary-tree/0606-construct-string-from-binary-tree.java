@@ -14,36 +14,35 @@
  * }
  */
 class Solution {
-    String str = "";
     public String tree2str(TreeNode root) {
         
+        StringBuilder str = new StringBuilder();
+        inorder(root,str);
         
-        inorder(root);
-        
-        return str;
+        return str+"";
     }
     
-    public void inorder(TreeNode root){
+    public void inorder(TreeNode root,StringBuilder str){
         if(root == null){
             return;
         }
-        
-        str += root.val; 
+                
+        str.append(root.val); 
         
         if(root.left == null && root.right != null){
-            str += "()" ;
+            str.append("()");
         }
         
         if(root.left != null){
-            str += "(";
-            inorder(root.left);
-            str +=  ")";
+            str.append("(");
+            inorder(root.left,str);
+            str.append(")");
         }
        
         if(root.right != null){
-            str += "(";
-            inorder(root.right);
-            str += ")"; 
+            str.append("(");
+            inorder(root.right,str);
+            str.append(")");
         }
     }
 }
