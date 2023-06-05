@@ -15,35 +15,31 @@
  */
 class Solution {
     int sum=0;
+    int max=0;
     public int deepestLeavesSum(TreeNode root) {
         
-        int depth = maxDepth(root);
-        inorder(root,1, depth);
+        max = maxDepth(root);
+        helper(root,1);
         
         return sum;
     }
     
     public int maxDepth(TreeNode root){
-        if(root == null){
-            return 0;
-        }
-        
+        if(root == null) return 0;
+                
         int left = maxDepth(root.left);
         int right = maxDepth(root.right);
         
         return Math.max(left,right) + 1;
     }
     
-     public void inorder(TreeNode root,int curr ,int max){
-        if(root == null){
-            return ;
-        }
-        if(curr == max){            
-            sum += root.val;
-        }
+     public void helper(TreeNode root,int curr){
+        
+         if(root == null) return ;
+              
+         if(curr == max) sum += root.val;
          
-         inorder(root.left,curr+1, max);
-         inorder(root.right,curr+1,max);
-
+         helper(root.left,curr+1);
+         helper(root.right,curr+1);
     }
 }
