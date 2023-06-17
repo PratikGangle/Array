@@ -15,24 +15,24 @@
  */
 class Solution {    
         
+    int ans=0;
     public int goodNodes(TreeNode root) {
-        return dfs(root,-9999);
+                
+        dfs(root,-9999);
+        return ans;
     }
     
-     public int dfs(TreeNode root, int max) {
+     public void dfs(TreeNode root, int max) {
          if(root == null){
-             return 0;
+             return;
          }
          
-         int ans =0;
          if(root.val >= max){
              ans++;
              max = root.val;
          }
          
-         ans += dfs(root.left,max);
-         ans += dfs(root.right,max);
-         
-         return ans;
+         dfs(root.left,max);
+         dfs(root.right,max);
     }
 }
