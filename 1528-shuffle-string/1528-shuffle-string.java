@@ -8,11 +8,8 @@ class Solution {
             int index = indices[i];            
             afterShuffling[index] = s.charAt(i);            
         }
-        
-        for(int i=0; i<n; i++){
-            char c =afterShuffling[i];
-            str.append(c);
-        }
-        return str + "";
+        str.append(afterShuffling);
+      
+        return str.toString();
     }
 }
