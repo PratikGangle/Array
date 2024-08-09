@@ -7,6 +7,10 @@ class Solution {
                   return false;
               }
               maxInd = Math.max(maxInd , nums[i]+i);
+              
+              if(i >= nums.length-1){
+                  return true;
+              }
           }
           return true;          
       }
