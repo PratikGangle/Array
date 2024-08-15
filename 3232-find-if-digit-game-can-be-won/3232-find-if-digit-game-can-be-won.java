@@ -12,6 +12,9 @@ class Solution {
                 ddsum += val;
             }
         }        
-        return  sdsum != ddsum;        
+        if(sdsum == ddsum){
+            return false;
+        }
+        return true;
     }
 }
