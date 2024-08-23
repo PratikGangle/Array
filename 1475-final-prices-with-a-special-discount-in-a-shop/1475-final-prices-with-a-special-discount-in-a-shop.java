@@ -3,20 +3,22 @@ class Solution {
         int n = prices.length;
         int answer[] = new int[n];
         
-        for(int i=0; i<n-1; i++){
-            boolean flag = true;
-            for(int j =i+1; j<n; j++){
-                if(prices[i] >= prices[j]){
-                    answer[i] = prices[i] - prices[j];
-                    flag = false;
-                    break;
-                }
-            }            
-            if(flag){
-                answer[i] = prices[i];
-            }
-        }
+        Stack<Integer> stack = new Stack<>();
+        stack.push(prices[n-1]);
         answer[n-1] = prices[n-1];
+        for(int i=n-2; i>=0; i--){                       
+            while(!stack.isEmpty() && stack.peek() > prices[i])
+                stack.pop();
+            
+            if(stack.isEmpty())
+                answer[i] = prices[i];
+            
+            else
+                answer[i] = prices[i] - stack.peek();                
+            
+            stack.push(prices[i]);
+            
+        }       
         return answer;
-    }
+    } 
 }
