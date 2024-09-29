@@ -1,31 +1,19 @@
 class Solution {
     public int countNegatives(int[][] grid) {
-        int count = 0;        
-        for(int i=0; i<grid.length; i++){ 
-            int index = findNegative(grid[i]);
-            int n = grid[i].length;
-            count += n - index;
+        int ans = 0;
+        int m = grid.length;
+        int n = grid[0].length;        
+        int i = 0; 
+        int j = n-1;        
+        while(i < m && j >= 0){
+            if(grid[i][j] < 0){
+                ans += m - i;
+                j--;
+            }
+            else{
+                i++;
+            }            
         }
-        return count;
-    }
-    
-     public int findNegative(int[] grid) {         
-         int start = 0;
-         int end = grid.length -1;
-         int pos = -1;
-         
-         while(start <= end){
-             int mid = (start + end)/2;
-             
-             if(grid[mid] >= 0 ){
-                 start = mid + 1;
-             }
-             else{
-                 pos = mid;
-                 end = mid -1;
-             }
-         }
-         if(pos != -1) return pos;
-         return grid.length;         
-     }
+        return ans;       
+    }        
 }
